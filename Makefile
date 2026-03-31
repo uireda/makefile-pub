@@ -36,11 +36,18 @@ $(OBJDIR):
 run: $(TARGET)
 	./$(TARGET)
 
-# Remove build artifacts
+# Remove object files
 clean:
-	rm -rf $(OBJDIR) $(TARGET)
+	rm -rf $(OBJDIR)
+
+# Remove object files and binary
+fclean: clean
+	rm -f $(TARGET)
+
+# Rebuild from scratch
+re: fclean all
 
 # Include auto-generated dependency files
 -include $(DEPS)
 
-.PHONY: all run clean
+.PHONY: all run clean fclean re
